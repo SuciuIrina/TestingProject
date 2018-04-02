@@ -9,10 +9,16 @@ import java.util.ArrayList;
 
 
 public class StoreRepository {
+
     private ArrayList<Product> allProducts = new ArrayList<Product>();
 
     public ArrayList<Product> getAllProducts() {
         return allProducts;
+    }
+
+    public StoreRepository(String fname) throws IOException {
+
+       this.readFile(fname);
     }
 
     public void readFile(String fname) throws NumberFormatException, IOException {
@@ -29,8 +35,9 @@ public class StoreRepository {
     }
 
     public boolean addNewProduct(Product p) throws Exception {
-        if (p.getCode() > 0 && p.getQuantity() >= 0 && p.getCode() < Integer.MAX_VALUE && p.getQuantity() < Integer.MAX_VALUE ) {
-            BufferedWriter out = new BufferedWriter(new FileWriter("products.txt", true));
+
+        if (p.getCode() > 0 && p.getQuantity() > 0 && p.getCode() < Integer.MAX_VALUE && p.getQuantity() < Integer.MAX_VALUE ) {
+
             int k = 1;
             for (Product i : allProducts) {
                 if (i.getCode() == p.getCode()) {
@@ -38,12 +45,8 @@ public class StoreRepository {
                 }
             }
             if (k == 1) {
-                out.newLine();
-                out.write(p.getCode() + " " + p.getName() + " " + p.getCategory() + " " + p.getQuantity());
-                out.close();
                 allProducts.add(p);
             } else {
-                out.close();
                 throw new Exception("This code already exists.");
             }
         } else {

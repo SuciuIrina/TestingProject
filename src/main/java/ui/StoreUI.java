@@ -7,6 +7,7 @@ package ui;
 import controller.StoreController;
 import model.Product;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,8 +18,8 @@ public class StoreUI {
     public StoreController ctrl;
     Scanner in;
 
-    public StoreUI(StoreController ctrl) {
-        this.ctrl = ctrl;
+    public StoreUI(String fileName) throws IOException {
+        this.ctrl = new StoreController(fileName);
         this.in = new Scanner(System.in);
     }
 

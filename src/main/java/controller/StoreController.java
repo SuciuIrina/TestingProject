@@ -6,11 +6,17 @@ package controller;
 import model.Product;
 import repository.StoreRepository;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class StoreController { 
-	StoreRepository io =new StoreRepository();
+	StoreRepository io;
+
+	public StoreController(String fileName) throws IOException {
+		io=new StoreRepository(fileName);
+	}
 	public void readProducts(String f){
 		try {
 			io.readFile(f);
@@ -25,7 +31,14 @@ public class StoreController {
 	
 	public void addProduct(Product p){
 		try {
-			io.addNewProduct(p);
+            BufferedWriter out = new BufferedWriter(new FileWriter("products.txt", true));
+			if(io.addNewProduct(p)){
+                out.newLine();
+                out.write(p.getCode() + " " + p.getName() + " " + p.getCategory() + " " + p.getQuantity());
+                out.close();
+            }else{
+			    out.close();
+            }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
