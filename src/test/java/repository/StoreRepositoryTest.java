@@ -16,7 +16,6 @@ public class StoreRepositoryTest {
 
     public StoreRepositoryTest() throws IOException {
         repository=new StoreRepository("products.txt");
-        System.out.println(repository.getAllProducts().toString());
     }
 
     @Test
