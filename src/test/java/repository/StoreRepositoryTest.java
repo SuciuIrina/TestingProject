@@ -20,7 +20,7 @@ public class StoreRepositoryTest {
 
     @Test
     public void addNewProduct1() {
-        Product product=new Product(3,"ananas","fructe",89);
+        Product product=new Product(3,"portocale","fructe",89);
         try {
             assertTrue(repository.addNewProduct(product));
         } catch (Exception e) {
@@ -31,7 +31,7 @@ public class StoreRepositoryTest {
 
     @Test
     public void addNewProduct2() {
-        Product product=new Product(-100,"ananas","fructe",-67);
+        Product product=new Product(-100,"portocale","fructe",-67);
         try {
             assertTrue(repository.addNewProduct(product));
         } catch (Exception e) {
@@ -42,7 +42,7 @@ public class StoreRepositoryTest {
 
     @Test
     public void addProductValidQuantity(){
-        Product product=new Product(4,"ananas","fructe",10);
+        Product product=new Product(4,"cirese","fructe",10);
         try {
             assertTrue(repository.addNewProduct(product));
         } catch (Exception e) {
@@ -52,7 +52,7 @@ public class StoreRepositoryTest {
 
     @Test
     public void addProductInvalidQuantity1(){
-        Product product=new Product(5,"ananas","fructe",-10);
+        Product product=new Product(5,"cirese","fructe",-10);
         try {
             assertTrue(repository.addNewProduct(product));
         } catch (Exception e) {
@@ -65,7 +65,7 @@ public class StoreRepositoryTest {
         String quantity="100000000000000000";
         try {
             int q = Integer.parseInt(quantity);
-            Product product=new Product(6,"ananas","fructe",q);
+            Product product=new Product(6,"cirese","fructe",q);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -73,7 +73,7 @@ public class StoreRepositoryTest {
 
     @Test
     public void addProductValidCode(){
-        Product product=new Product(7,"ananas","fructe",10);
+        Product product=new Product(7,"pere","fructe",10);
         try {
             assertTrue(repository.addNewProduct(product));
         } catch (Exception e) {
@@ -83,7 +83,7 @@ public class StoreRepositoryTest {
 
     @Test
     public void addProductInvalidCode1(){
-        Product product=new Product(-1,"ananas","fructe",10);
+        Product product=new Product(-1,"pere","fructe",10);
         try {
             assertTrue(repository.addNewProduct(product));
         } catch (Exception e) {
@@ -96,7 +96,7 @@ public class StoreRepositoryTest {
         String code="100000000000000000";
         try {
             int c = Integer.parseInt(code);
-            Product product=new Product(c,"ananas","fructe",10);
+            Product product=new Product(c,"pere","fructe",10);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -104,7 +104,7 @@ public class StoreRepositoryTest {
 
     @Test
     public void addProductUniqueCode(){
-        Product product=new Product(99,"ananas","fructe",10);
+        Product product=new Product(99,"mere","fructe",10);
         try {
             assertTrue(repository.addNewProduct(product));
         } catch (Exception e) {
@@ -114,7 +114,47 @@ public class StoreRepositoryTest {
 
     @Test
     public void addProductDuplicateCode(){
-        Product product=new Product(repository.getAllProducts().get(0).getCode(),"ananas","fructe",10);
+        Product product=new Product(repository.getAllProducts().get(0).getCode(),"mere","fructe",10);
+        try {
+            assertTrue(repository.addNewProduct(product));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public  void addProductValidName(){
+        Product product=new Product(8,"ananas","fructe",10);
+        try {
+            assertTrue(repository.addNewProduct(product));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public  void addProductInvalidName(){
+        Product product=new Product(9,"ananas*","fructe",10);
+        try {
+            assertTrue(repository.addNewProduct(product));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public  void addProductValidCategory(){
+        Product product=new Product(10,"banane","fructe",10);
+        try {
+            assertTrue(repository.addNewProduct(product));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public  void addProductInvalidCategory(){
+        Product product=new Product(11,"banane","fruc&te",10);
         try {
             assertTrue(repository.addNewProduct(product));
         } catch (Exception e) {

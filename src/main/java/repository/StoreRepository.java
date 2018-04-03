@@ -36,7 +36,8 @@ public class StoreRepository {
 
     public boolean addNewProduct(Product p) throws Exception {
 
-        if (p.getCode() > 0 && p.getQuantity() > 0 && p.getCode() < Integer.MAX_VALUE && p.getQuantity() < Integer.MAX_VALUE ) {
+        if (p.getCode() > 0 && p.getQuantity() > 0 && p.getCode() < Integer.MAX_VALUE && p.getQuantity() < Integer.MAX_VALUE
+                && isValid(p.getName()) && isValid(p.getCategory())) {
 
             int k = 1;
             for (Product i : allProducts) {
@@ -50,7 +51,7 @@ public class StoreRepository {
                 throw new Exception("This code already exists.");
             }
         } else {
-            throw new Exception("The quantity or the code is not in the range [0,2147483647]");
+            throw new Exception("The product does not have valid fields!");
         }
         return true;
     }
@@ -72,6 +73,10 @@ public class StoreRepository {
             if (p.getName().compareTo(pname) == 0)
                 prods.add(p);
         return prods;
+    }
+
+    public boolean isValid(String string){
+        return string.matches("[a-zA-Z]+");
     }
 
     public ArrayList<Product> stockSituation() {
