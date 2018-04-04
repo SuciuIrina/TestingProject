@@ -27,4 +27,13 @@ public class ListProductsCategoryTest {
 
         assertEquals(1,result.size());
     }
+
+    @Test
+    public void getProductsFromCategory2(){
+        String category="categorie";
+        ArrayList<Product> result=new ArrayList<Product>();
+        result=repo.getProductsCategory(category);
+
+        assertEquals(0,result.size());
+    }
 }
