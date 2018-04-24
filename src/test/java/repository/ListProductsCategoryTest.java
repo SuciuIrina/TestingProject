@@ -36,4 +36,33 @@ public class ListProductsCategoryTest {
 
         assertEquals(0,result.size());
     }
+
+    @Test
+    public void getProductsFromCategory3(){
+        String category="aliment";
+        ArrayList<Product> result=new ArrayList<Product>();
+        result=repo.getProductsCategory(category);
+
+        assertEquals(1,result.size());
+        assertEquals(new Product(1,"paine","aliment",100),result.get(0));
+    }
+
+    @Test
+    public void getProductsFromCategory4(){
+        String category="dulciuri";
+        ArrayList<Product> result=new ArrayList<Product>();
+        result=repo.getProductsCategory(category);
+
+        assertEquals(0,result.size());
+    }
+
+    @Test
+    public void getProductsFromCategory5(){
+        this.repo.setAllProducts(new ArrayList<Product>());
+        String category="fructe";
+        ArrayList<Product> result=new ArrayList<Product>();
+        result=repo.getProductsCategory(category);
+
+        assertEquals(0,result.size());
+    }
 }

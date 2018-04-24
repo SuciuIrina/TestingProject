@@ -21,6 +21,10 @@ public class StoreRepository {
        this.readFile(fname);
     }
 
+    public void setAllProducts(ArrayList<Product> allProducts) {
+        this.allProducts = allProducts;
+    }
+
     public void readFile(String fname) throws NumberFormatException, IOException {
         FileInputStream f = new FileInputStream(fname);
         DataInputStream in = new DataInputStream(f);
