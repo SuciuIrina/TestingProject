@@ -43,7 +43,7 @@ public class Lab3Test {
         ArrayList<Product> result=new ArrayList<Product>();
         result=repository.getProductsCategory(category);
 
-        assertTrue(result.size()>0);
+        assertTrue(result.size()>=1);
     }
 
 
